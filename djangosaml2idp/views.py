@@ -375,6 +375,7 @@ class LogoutProcessView(LoginRequiredMixin, IdPHandlerViewMixin, View):
             return error_cbv.handle_error(request, exception=excp, status_code=400)
 
         resp = idp_server.create_logout_response(req_info.message, [binding])
+        rinfo = idp_server.response_args(req_info.message, [binding])
 
         '''
         # TODO: SOAP
@@ -390,13 +391,13 @@ class LogoutProcessView(LoginRequiredMixin, IdPHandlerViewMixin, View):
 
         try:
             # hinfo returns request or response, it depends by request arg
-            hinfo = idp_server.apply_binding(binding, resp.__str__(), resp.destination, relay_state, response=True)
+            hinfo = idp_server.apply_binding(rinfo["binding"], resp, rinfo["destination"], relay_state, response=True)
         except Exception as excp:
             logger.error("ServiceError: %s", excp)
             return error_cbv.handle_error(request, exception=excp, status=400)
 
-        logger.debug("--- {} Response [\n{}] ---".format(self.__service_name, repr_saml(resp.__str__().encode())))
-        logger.debug("--- binding: {} destination:{} relay_state:{} ---".format(binding, resp.destination, relay_state))
+        logger.debug("--- {} Response [\n{}] ---".format(self.__service_name, repr_saml(resp.encode())))
+        logger.debug("--- binding: {} destination:{} relay_state:{} ---".format(rinfo["binding"], rinfo["destination"], relay_state))
 
         # TODO: double check username session and saml login request
         # logout user from IDP
