@@ -45,6 +45,8 @@ def sample_get_request(saml_request_minimal) -> HttpRequest:
 def logged_in_request() -> HttpRequest:
     request = HttpRequest()
     request.session = SessionStore()
+    request.META["SERVER_NAME"] = "localhost"
+    request.META["SERVER_PORT"] = "80"
     username = "user1"
     password = "bar"
     User.objects.create_user(username=username, password=password)

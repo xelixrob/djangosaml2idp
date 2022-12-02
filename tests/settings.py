@@ -47,6 +47,7 @@ INSTALLED_APPS = (
 
 ROOT_URLCONF = 'tests.urls'
 
+ALLOWED_HOSTS = ["localhost"]
 BASE_URL = 'http://localhost:9000/idp'
 
 SAML_AUTHN_SIGN_ALG = saml2.xmldsig.SIG_RSA_SHA256

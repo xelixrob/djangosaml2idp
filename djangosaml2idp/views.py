@@ -396,7 +396,7 @@ class LogoutProcessView(LoginRequiredMixin, IdPHandlerViewMixin, View):
             logger.error("ServiceError: %s", excp)
             return error_cbv.handle_error(request, exception=excp, status=400)
 
-        logger.debug("--- {} Response [\n{}] ---".format(self.__service_name, repr_saml(resp.encode())))
+        logger.debug("--- {} Response [\n{}] ---".format(self.__service_name, repr_saml(str(resp).encode())))
         logger.debug("--- binding: {} destination:{} relay_state:{} ---".format(rinfo["binding"], rinfo["destination"], relay_state))
 
         # TODO: double check username session and saml login request
