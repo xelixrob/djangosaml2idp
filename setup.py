@@ -5,13 +5,14 @@ from setuptools import setup, find_packages
 from djangosaml2idp import __version__
 
 setup(
-    name='djangosaml2idp',
+    name='djangosaml2idp2',
     version=__version__,
     description='SAML 2.0 Identity Provider for Django',
     keywords="django,pysaml2,sso,saml2,federated authentication,authentication,idp",
     author='Mathieu Hinderyckx',
     author_email='mathieu.hinderyckx@gmail.com',
-    maintainer="Mathieu Hinderyckx",
+    maintainer="Mikuláš Poul",
+    maintainer_email="mikulaspoul@gmail.com",
     long_description="\n\n".join([
         open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
     ]),
