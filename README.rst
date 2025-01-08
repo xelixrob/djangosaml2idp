@@ -153,6 +153,15 @@ The default value for the fields ``processor`` and ``attribute_mapping`` in the 
     SAML_IDP_SP_FIELD_DEFAULT_PROCESSOR = 'djangosaml2idp.processors.BaseProcessor'
     SAML_IDP_SP_FIELD_DEFAULT_ATTRIBUTE_MAPPING = {"email": "email", "first_name": "first_name", "last_name": "last_name", "is_staff": "is_staff", "is_superuser": "is_superuser"}
 
+In case your SP does not properly expose validuntil in metadata, you can provide fallback setting for it using::
+
+    SAML_IDP_FALLBACK_EXPIRATION_DAYS = 30
+
+The default value for the fields ``processor`` and ``attribute_mapping`` in the ``ServiceProvider`` can be set via the settings (the values displayed here are the defaults)::
+
+    SAML_IDP_SP_FIELD_DEFAULT_PROCESSOR = 'djangosaml2idp.processors.BaseProcessor'
+    SAML_IDP_SP_FIELD_DEFAULT_ATTRIBUTE_MAPPING = {"email": "email", "first_name": "first_name", "last_name": "last_name", "is_staff": "is_staff", "is_superuser": "is_superuser"}
+
 
 Customizing error handling
 ==========================
